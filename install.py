@@ -6,6 +6,8 @@ import os
 
 apt_update_cmd = subprocess.run(["sudo", "apt", "update", "-y", ])
 print("The exit code was: {rc}".format(rc=apt_update_cmd.returncode))
+apt_upgrade_cmd = subprocess.run(["sudo", "apt", "update", "-y"])
+print("The exit code was: {rc}".format(rc=apt_update_cmd.returncode))
 
 
 file_path = os.getcwd()
@@ -14,15 +16,6 @@ user = file_path_list[2]
 print(user)
 
 user_full_name = input("What is your full name? (type and hit enter)")
-
-#gh_name_command = ["git", "config", "--global", "user.name"]
-#full_name_list = user_full_name.split(" ")
-#for word in reversed(gh_name_command):
-#	full_name_list.insert(0, word)
-#print(full_name_list)
-#gh_set_name = subprocess.run(full_name_list)
-#print("The exit code was: %d" % gh_set_name.returncode)
-
 
 user_gh_email = input("What email do you use for github? (type and hit enter)")
 
@@ -69,15 +62,13 @@ elif user_gh_folders == "y" or user_gh_folders == "y" :
 	y_gh_folder_cmd = subprocess.run(["mkdir", "-p", "/home/{u}/gitProjects/myProjects".format(u=user), 
 	"/home/{u}/gitProjects/otherProjects".format(u=user)])
 	print("The exit code was: {rc}".format(rc=y_gh_folder_cmd.returncode))
+else:
+	pass
 
 
 
 
-
-
-
-
-
-
-
-
+if user_gh_folders == "" or user_gh_folders == "y" or user_gh_folders == "Y":
+	mv_project_cmd = subprocess.run(["mv","/home/{u}/UbuntuPythonSetup/".format(u=user), 
+	"/home/{u}/gitProjects/myProjects/UbuntuPythonSetup/".format(u=user)])
+	print("The exit code was: {rc}".format(rc=mv_project_cmd.returncode))
